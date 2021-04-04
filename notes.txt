@@ -1,0 +1,58 @@
+Date- 04/04/2021
+
+GIT PULL-
+
+git pull
+implicitely the command becomes git pull origin master.
+the details like which origin and which branch are interanlly taken from "git config --get branch.master.remote" and "git config --get branch.feature2.merge."
+
+Refer SO- "https://stackoverflow.com/questions/23953125/difference-between-git-pull-and-git-pull-origin-master/23953209#:~:text=git%20pull%20origin%20master%20will,branch%20name%20in%20gitconfig%20file."
+
+when you use just-
+
+1.git pull
+
+The pull will take place for all the branches which have the local and the remote mapping.
+
+The pull will merge only the active/current/* branch
+
+
+2.git pull origin master
+
+git will ONLY pull the details from the remote for the branch specified in the command, here just master.
+
+the git pull behavior is same as git pull origin <branch> for only those branches that are mapped with their upstream branches.
+
+
+
+GIT ADD-
+
+Suppose my current branch has 3 files- one.txt, two.txt and three.txt.
+Now I delete one.txt from local.
+Also I add ten.txt from local
+
+git status will show 
+
+deleted: one.txt
+newfile: ten.txt 
+
+scenario 1- I do git add . and git push
+
+The deletion of file one.txt from local is reflected to the repo
+
+scenario 2- I do git add ten.txt and git push
+
+Git does not ack/record the local file deletion and just pushes ten.txt to repo
+
+NOTE-
+
+You use git rm for only those files that you want to delete from the git terminal.
+when git is already prompting you the file as "deleted: one.txt" then there is no
+use in using git rm. Git knows that its deleted. It is just letting you know about
+it :).
+
+now the question is- do you want to reflect that deleted files in the repo as well?
+
+if yes then- just use git add .
+if only a few of them then- git add <f-name>
+if none and you have created new files to be pushed then- git add <new_f-names>
